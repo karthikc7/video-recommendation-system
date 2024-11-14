@@ -1,0 +1,4 @@
+status,message,page,page_size,max_page_size,posts,views,likes,rating
+success,Video 1 liked,1,10,50,Post 1 details,120,30,4.5
+success,Video 2 liked,1,10,50,Post 2 details,200,50,4.7
+success,Video 3 liked,2,10,50,Post 3 details,350,80,4.8
