@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, abort
+from flask import Flask, render_template, abort
 
 app = Flask(__name__)
 
@@ -14,14 +14,17 @@ video_data = [
 @app.route('/recommendations', methods=['GET'])
 def get_recommendations():
     try:
-        # Return a sorted list of video IDs by views (top 3)
+        # If no video data is available, abort with a 404 error
         if not video_data:
             abort(404, description="No video data available")
 
+        # Return top 3 videos sorted by views in descending order
         recommendations = sorted(video_data, key=lambda x: x['views'], reverse=True)[:3]
         return render_template('recommendations.html', recommendations=recommendations)
+    
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        # If any other error occurs, render a generic error page (or show an error message)
+        return render_template('error.html', error_message=str(e)), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
