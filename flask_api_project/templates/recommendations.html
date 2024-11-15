@@ -3,33 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Video Recommendations</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Top 3 Video Recommendations</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
         }
         h1 {
             color: #333;
+            text-align: center;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        li {
-            background: #f4f4f4;
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 5px;
+        .video-card {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .video-card:last-child {
+            border-bottom: none;
+        }
+        .video-card h2 {
+            margin: 0;
+            color: #007BFF;
+        }
+        .video-details {
+            font-size: 14px;
+            color: #555;
         }
     </style>
 </head>
 <body>
-    <h1>Top Video Recommendations</h1>
-    <ul>
+    <div class="container">
+        <h1>Top 3 Recommended Videos</h1>
         {% for video in recommendations %}
-            <li>Video ID: {{ video.video_id }}, Views: {{ video.views }}, Likes: {{ video.likes }}, Rating: {{ video.rating }}</li>
+            <div class="video-card">
+                <h2>Video ID: {{ video.video_id }}</h2>
+                <div class="video-details">
+                    <p>Views: {{ video.views }}</p>
+                    <p>Likes: {{ video.likes }}</p>
+                    <p>Rating: {{ video.rating }}</p>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>
