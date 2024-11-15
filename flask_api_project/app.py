@@ -30,5 +30,6 @@ def get_recommendations():
 def not_found(e):
     return render_template('404.html'), 404
 
+# On Vercel, we don't need app.run(debug=True) because Vercel will handle it
 if __name__ == '__main__':
     app.run(debug=True)
