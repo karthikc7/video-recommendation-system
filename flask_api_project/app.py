@@ -14,16 +14,13 @@ video_data = [
 @app.route('/recommendations', methods=['GET'])
 def get_recommendations():
     try:
-        # Check if there is any video data
         if not video_data:
             abort(404, description="No video data available")
-
-        # Sort video data by views and return the top 3 videos
         recommendations = sorted(video_data, key=lambda x: x['views'], reverse=True)[:3]
         return render_template('recommendations.html', recommendations=recommendations)
     except Exception as e:
-        # Return a JSON error response for any unhandled exceptions
         return jsonify({"error": str(e)}), 500
+
 
 # Error handling for 404 errors
 @app.errorhandler(404)
@@ -32,4 +29,5 @@ def not_found(e):
 
 # On Vercel, we don't need app.run(debug=True) because Vercel will handle it
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
+
